@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>check</h1>
+    </div>
+    <script
+      
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script>
+      const heading1 = React.createElement("h1", {id: "heading1", key: "heading1", style:{color: "blue"}}, "heading 1")
+      const heading2 = React.createElement("h1", {id: "heading2", key: "heading2"}, "heading 2")
+      const element = React.createElement("div", {key: "element"}, [heading1, heading2])
+      console.log(element)
+      const root = ReactDOM.createRoot(document.getElementById("root"))
+      root.render(element)
+    </script>
+  </body>
+</html>
