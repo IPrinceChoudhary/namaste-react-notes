@@ -1,33 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading1 = React.createElement(
-  "h1",
-  { id: "title", style: { backgroundColor: "red" }, key: "h1" },
-  "Heading1"
-);
-const heading2 = React.createElement(
-  "h2",
-  { id: "title2", key: "h2" },
-  "Heading2"
-);
-// React.createElement ==> object ==> rendered in html DOM with the help of ReactDOM package
-
 const heading3 = (
   <h3 id="title3" key="h3">
     Heading3
   </h3>
-); // jsx
-// jsx is not html inside js, its a html like syntax
-// jsx ==> React.createElement ==> object ==> html DOM
-// jsx is converted into React.createElement by Babel
+); // this is react element returning object with jsx inside written it
 
-const container = React.createElement("div", { id: "box" }, [
-  heading1,
-  heading2,
-  heading3,
-]);
-console.log(container);
+// React component
+
+// Everything is a component in react 
+
+// there are 2 ways we can create components
+// functional based component and class based component
+
+// *Functional based component is just a normal js function
+// *which returns some piece of jsx or react element or a component 
+
+const HeaderComponent2 = () =>{
+  return (
+  <h1>React functional component with function declaration</h1>
+  )
+}
+
+const HeaderComponent = ()=>{ // *Name of component always should be start with Capital letter - convention
+  return ( // we can avoid return statement as well. this is part of arrow functions
+    <div>
+      {heading3}
+      {/* <HeaderComponent2/> */}
+      {/* or  */}
+      {HeaderComponent2()}
+      <h1>React functional component with arrow function</h1>
+    </div>
+  )
+}; // this is a react function component returning function with jsx written inside
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(container);
+root.render(<HeaderComponent/>);
