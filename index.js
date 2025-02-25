@@ -1,39 +1,76 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading3 = (
-  <h3 id="title3" key="h3">
-    Heading3
-  </h3>
-); // this is react element returning object with jsx inside written it
+/**
+ * header
+ * - logo
+ * - nav items
+ * - cart
+ *
+ * hero
+ * - search bar
+ * - restaurant list
+ * - - Restaurant card
+ * - - - Image
+ * - - - Name
+ * - - - Rating
+ * - - - Cuisines
+ *
+ * footer
+ * - links
+ * - copyright
+ */
 
-// React component
+// inline styling 
+const styleObj = {
+  backgroundColor: "red",
+}
 
-// Everything is a component in react 
+const Heading3 = () => (
+  <a href="/">
+    <h1 id="title3" key="h1">
+      Foody
+    </h1>
+  </a>
+);
 
-// there are 2 ways we can create components
-// functional based component and class based component
-
-// *Functional based component is just a normal js function
-// *which returns some piece of jsx or react element or a component 
-
-const HeaderComponent2 = () =>{
+const Header = () => {
   return (
-  <h1>React functional component with function declaration</h1>
+    <div style={styleObj} className="header">
+      <Heading3 />
+      <div className="nav-items">
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+          <li><a href="">Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+const Body = ()=>{
+  return(
+    <p>body</p>
   )
 }
 
-const HeaderComponent = ()=>{ // *Name of component always should be start with Capital letter - convention
-  return ( // we can avoid return statement as well. this is part of arrow functions
-    <div>
-      {heading3}
-      {/* <HeaderComponent2/> */}
-      {/* or  */}
-      {HeaderComponent2()}
-      <h1>React functional component with arrow function</h1>
-    </div>
+const Footer = ()=>{
+  return(
+    <p>body</p>
   )
-}; // this is a react function component returning function with jsx written inside
+}
+
+const AppLayout = ()=>{
+  return (
+    <React.Fragment>
+      <Header/>
+      <Body/>
+      <Footer/>
+    </React.Fragment>
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<HeaderComponent/>);
+root.render(<Header />);
