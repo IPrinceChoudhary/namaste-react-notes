@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { logo } from "../Config";
 
 const Title = () => (
@@ -9,6 +10,8 @@ const Title = () => (
 );
 
 const Header = () => {
+  const [first, setFirst] = useState(false);
+
   return (
     <div className="header">
       <Title />
@@ -28,8 +31,27 @@ const Header = () => {
           </li>
         </ul>
       </div>
+      <div className="loginLogout">
+        {!first ? (
+          <button
+            onClick={() => {
+              setFirst(true);
+            }}
+          >
+            Login
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              setFirst(false);
+            }}
+          >
+            Logout
+          </button>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Header
+export default Header;
