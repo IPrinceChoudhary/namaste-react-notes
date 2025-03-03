@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { logo } from "../Config";
+import { NavLink } from "react-router";
 
 const Title = () => (
-  <a href="/">
+  <NavLink to="/" end>
     <h1 id="title3" key="h1">
       {logo}
     </h1>
-  </a>
+  </NavLink>
 );
 
 const Header = () => {
@@ -18,16 +19,45 @@ const Header = () => {
       <div className="nav-items">
         <ul>
           <li>
-            <a href="">Home</a>
+            <NavLink
+              to="/"
+              end
+              style={({ isActive }) => ({
+                color: isActive ? "red" : "black",
+              })}
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <a href="">About</a>
+            <NavLink
+              to="/about"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : "black",
+              })}
+            >
+              About
+            </NavLink>
           </li>
           <li>
-            <a href="">Contact</a>
+            <NavLink
+              to="/contact"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : "black",
+              })}
+            >
+              Contact
+            </NavLink>
           </li>
           <li>
-            <a href="">Cart</a>
+            <NavLink
+              to="/cart"
+              style={({ isActive }) => ({
+                color: isActive ? "red" : "black",
+              })}
+            >
+              Cart
+            </NavLink>
           </li>
         </ul>
       </div>
