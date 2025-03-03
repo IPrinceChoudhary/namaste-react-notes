@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import Cart from "./components/Cart";
 import Error from "./components/Error";
 import { BrowserRouter, Route, Routes } from "react-router";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
   return (
@@ -19,6 +20,7 @@ const AppLayout = () => {
         <Route path="contact" element={<Contact />} />
         <Route path="cart" element={<Cart />} />
         <Route path="*" element={<Error />}/>
+        <Route path="restaurant/:id" element={<RestaurantMenu/>}/>
       </Routes>
       <Footer />
     </React.Fragment>

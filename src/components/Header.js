@@ -21,7 +21,6 @@ const Header = () => {
           <li>
             <NavLink
               to="/"
-              end
               style={({ isActive }) => ({
                 color: isActive ? "red" : "black",
               })}
