@@ -23,11 +23,11 @@ const Body = () => {
   }
 
   return (
-    <>
-      <div className="search-container">
+    <div className="p-5">
+      <div className="search-container m-2">
         <input
           type="text"
-          className="search-input"
+          className="border-2"
           placeholder="Search"
           value={searchText}
           onChange={(e) => {
@@ -41,7 +41,7 @@ const Body = () => {
           }}
         />
         <button
-          className="search-btn"
+          className="bg-amber-600 text-white mx-1 rounded-md px-2 cursor-pointer"
           onClick={() => {
             const data = filterRestaurant(searchText, allRestaurants);
             setRestaurant(data);
@@ -50,20 +50,20 @@ const Body = () => {
           search
         </button>
       </div>
-      <div className="restaurant-list">
+      <div className="flex flex-wrap gap-3">
         {allRestaurants?.length === 0 ? (
           <Shimmer />
         ) : (
           restaurant.map((res) => {
             return (
-              <Link to={`restaurant/${res?.info?.id}`} key={res?.info?.id}>
+              <Link to={`restaurant/${res?.info?.id}`} key={res?.info?.id}> 
                 <RestaurantCard restaurant={res} />
               </Link>
             );
           })
         )}
       </div>
-    </>
+    </div>
   );
 };
 

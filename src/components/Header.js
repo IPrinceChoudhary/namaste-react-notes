@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 
 const Title = () => (
   <NavLink to="/" end>
-    <h1 id="title3" key="h1">
+    <h1 id="title3" key="h1" className="font-extrabold text-4xl">
       {logo}
     </h1>
   </NavLink>
@@ -14,11 +14,11 @@ const Header = () => {
   const [first, setFirst] = useState(false);
 
   return (
-    <div className="header">
+    <div className="p-3 flex justify-between items-center bg-amber-100">
       <Title />
-      <div className="nav-items">
-        <ul>
-          <li>
+      <div className="">
+        <ul className="flex">
+          <li className="pr-3">
             <NavLink
               to="/"
               style={({ isActive }) => ({
@@ -28,7 +28,7 @@ const Header = () => {
               Home
             </NavLink>
           </li>
-          <li>
+          <li className="pr-3">
             <NavLink
               to="/about"
               style={({ isActive }) => ({
@@ -38,7 +38,7 @@ const Header = () => {
               About
             </NavLink>
           </li>
-          <li>
+          <li className="pr-3">
             <NavLink
               to="/contact"
               style={({ isActive }) => ({
@@ -48,7 +48,7 @@ const Header = () => {
               Contact
             </NavLink>
           </li>
-          <li>
+          <li className="pr-3">
             <NavLink
               to="/cart"
               style={({ isActive }) => ({
@@ -60,7 +60,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <div className="loginLogout">
+      <div className="loginLogout border-2 p-2 cursor-pointer">
         {!first ? (
           <button
             onClick={() => {
