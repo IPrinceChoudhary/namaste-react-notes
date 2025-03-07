@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, StrictMode, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,13 +9,19 @@ import Error from "./components/Error";
 import { BrowserRouter, Routes, Route } from "react-router";
 import RestaurantMenu from "./components/RestaurantMenu";
 import ProfileClassComp from "./components/ProfileClass";
+import UserContext from "./utils/UserContext";
 
 // lazy loading code
 const Cart = lazy(() => import("./components/Cart"));
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Prince(context)",
+    email: "@gmail.com"
+  })
   return (
     <React.Fragment>
+    <UserContext.Provider value={{user, setUser}}>
       <Header />
       <Routes>
         <Route index element={<Body />} />
@@ -40,13 +46,16 @@ const AppLayout = () => {
         <Route path="restaurant/:id" element={<RestaurantMenu />} />
       </Routes>
       <Footer />
+    </UserContext.Provider>
     </React.Fragment>
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <StrictMode>
   <BrowserRouter>
     <AppLayout />
   </BrowserRouter>
+  </StrictMode>
 );

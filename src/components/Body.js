@@ -1,14 +1,17 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState} from "react";
+import { useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import { filterRestaurant } from "../utils/helper.js";
 import useRestaurant from "../utils/useRestaurant.js";
 import useOnline from "../utils/useOnline.js";
+import UserContext from "../utils/UserContext.js";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const {allRestaurants, restaurant, setRestaurant} = useRestaurant();
+
+  const {user, setUser} = useContext(UserContext)
 
   const isOnline = useOnline()
   if(!isOnline){
@@ -49,6 +52,7 @@ const Body = () => {
         >
           search
         </button>
+        <input type="text" value={user.name} className="border-2" onChange={(e)=>setUser({...user, name: e.target.value})}/>
       </div>
       <div className="flex flex-wrap gap-3">
         {allRestaurants?.length === 0 ? (

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { logo } from "../Config";
 import { NavLink } from "react-router";
+import UserContext from "../utils/UserContext";
+import useOnline from "../utils/useOnline";
 
 const Title = () => (
   <NavLink to="/" end>
@@ -12,6 +14,8 @@ const Title = () => (
 
 const Header = () => {
   const [first, setFirst] = useState(false);
+  const isOnline = useOnline()
+  const {user} = useContext(UserContext)
 
   return (
     <div className="p-3 flex justify-between items-center bg-amber-100">
@@ -60,6 +64,8 @@ const Header = () => {
           </li>
         </ul>
       </div>
+      {isOnline ? "🟢" : "🔴"}
+      <p className="text-black">{user.name}</p>
       <div className="loginLogout border-2 p-2 cursor-pointer">
         {!first ? (
           <button

@@ -6,7 +6,7 @@ const Shimmer = () => {
       {Array(10)
         .fill("")
         .map((e, index) => (
-          <div className="card" key={index}>
+          <div className="h-[20rem] w-[12rem]" key={index}>
             <img src={shimmerImg} alt="" />
             <h2>
               <img src={shimmerImg} alt="" />
