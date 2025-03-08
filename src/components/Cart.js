@@ -2,6 +2,8 @@
 
 import { useState, useRef } from "react";
 import { sectionsData } from "../Config";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../utils/cartSlice";
 
 const Section = ({
   heading,
@@ -35,12 +37,22 @@ const Section = ({
       >
         {visibleSection ? "Hide" : "Show"}
       </button>
+
     </div>
   );
 };
 
 const Cart = () => {
   const [visibleSection, setVisibleSection] = useState(null);
+  const cartItems = useSelector(store => store.cart.items) // subscribing to the specific portion of store here (inside store => inside Cart slice => inside item array  *Major performance improvement 
+  //! const cartItems = useSelector(store => store) 
+  // don't do like this, it means subscribing to the whole store, which will lead to performance issues because every time is there any changes in the store it will re render the Cart component
+
+  const dispatch = useDispatch()
+
+  const handleClearCart = ()=>{
+    dispatch(clearCart())
+  }
 
   return (
     <>
@@ -59,6 +71,10 @@ const Cart = () => {
           />
         );
       })}
+      <div className="flex">
+        <h2 className="text-3xl font-bold">CartItems - {cartItems.length}</h2>
+        <button className="text-amber-600 bg-white border-2 px-3 m-2 cursor-pointer" onClick={()=>handleClearCart()}>Clear Cart</button>
+      </div>
     </>
   );
 };

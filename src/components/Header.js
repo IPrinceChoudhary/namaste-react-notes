@@ -3,6 +3,7 @@ import { logo } from "../Config";
 import { NavLink } from "react-router";
 import UserContext from "../utils/UserContext";
 import useOnline from "../utils/useOnline";
+import { useSelector } from "react-redux";
 
 const Title = () => (
   <NavLink to="/" end>
@@ -14,8 +15,10 @@ const Title = () => (
 
 const Header = () => {
   const [first, setFirst] = useState(false);
-  const isOnline = useOnline()
-  const {user} = useContext(UserContext)
+  const isOnline = useOnline();
+  const {user} = useContext(UserContext);
+  const cartItems = useSelector(store => store.cart.items)
+  console.log(cartItems)
 
   return (
     <div className="p-3 flex justify-between items-center bg-amber-100">
@@ -59,7 +62,7 @@ const Header = () => {
                 color: isActive ? "red" : "black",
               })}
             >
-              Cart
+              Cart - {cartItems.length}
             </NavLink>
           </li>
         </ul>
