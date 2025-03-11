@@ -44,6 +44,7 @@ const Body = () => {
           }}
         />
         <button
+          data-testid="search-btn"
           className="bg-amber-600 text-white mx-1 rounded-md px-2 cursor-pointer"
           onClick={() => {
             const data = filterRestaurant(searchText, allRestaurants);
@@ -52,9 +53,9 @@ const Body = () => {
         >
           search
         </button>
-        <input type="text" value={user.name} className="border-2" onChange={(e)=>setUser({...user, name: e.target.value})}/>
+        <input type="text" value={user?.name} className="border-2" onChange={(e)=>setUser({...user, name: e.target.value})} data-testid="search-input"/>
       </div>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-3" data-testid="restaurant-list">
         {allRestaurants?.length === 0 ? (
           <Shimmer />
         ) : (

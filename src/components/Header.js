@@ -4,71 +4,72 @@ import { NavLink } from "react-router";
 import UserContext from "../utils/UserContext";
 import useOnline from "../utils/useOnline";
 import { useSelector } from "react-redux";
+import foodLogo from "../assets/images/foodLogo.png";
 
 const Title = () => (
   <NavLink to="/" end>
-    <h1 id="title3" key="h1" className="font-extrabold text-4xl">
-      {logo}
-    </h1>
+    <img
+      data-testid="logo"
+      id="title3"
+      key="image"
+      className="h-16"
+      src={foodLogo}
+      alt="logo"
+    />
+    {/* jest recognizes data-testid */}
   </NavLink>
 );
 
 const Header = () => {
   const [first, setFirst] = useState(false);
   const isOnline = useOnline();
-  const {user} = useContext(UserContext);
-  const cartItems = useSelector(store => store.cart.items)
-  console.log(cartItems)
+  const { user } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="p-3 flex justify-between items-center bg-amber-100">
       <Title />
       <div className="">
         <ul className="flex">
-          <li className="pr-3">
-            <NavLink
-              to="/"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "black",
-              })}
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className="pr-3">
-            <NavLink
-              to="/about"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "black",
-              })}
-            >
-              About
-            </NavLink>
-          </li>
-          <li className="pr-3">
-            <NavLink
-              to="/contact"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "black",
-              })}
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li className="pr-3">
-            <NavLink
-              to="/cart"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "black",
-              })}
-            >
+          <NavLink
+            to="/"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "black",
+            })}
+          >
+            <li className="pr-3">Home</li>
+          </NavLink>
+          <NavLink
+            to="/about"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "black",
+            })}
+          >
+            <li className="pr-3">About</li>
+          </NavLink>
+          <NavLink
+            to="/contact"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "black",
+            })}
+          >
+            <li className="pr-3">Contact</li>
+          </NavLink>
+          <NavLink
+            to="/cart"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "black",
+            })}
+          >
+            <li data-testid="cart" className="pr-3">
               Cart - {cartItems.length}
-            </NavLink>
-          </li>
+            </li>
+          </NavLink>
         </ul>
       </div>
-      {isOnline ? "🟢" : "🔴"}
-      <p className="text-black">{user.name}</p>
+      <p data-testid="online-status">{isOnline ? "🟢" : "🔴"}</p>
+      <p className="text-black">{user?.name}</p>
       <div className="loginLogout border-2 p-2 cursor-pointer">
         {!first ? (
           <button
